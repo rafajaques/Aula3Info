@@ -9,7 +9,9 @@ $dados = $pdo->query('SELECT * FROM compromissos');
 $compromissos = $dados->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($compromissos as $indice => $compromisso) {
-    $compromissos[$indice]['fimdesemana'] = Carbon::parse($compromisso['data'])->isWeekend();
+    $fds = Carbon::parse($compromisso['data'])->isWeekend();
+    
+    $compromissos[$indice]['fimdesemana'] = $fds;
 }
 
 echo $twig->render(
